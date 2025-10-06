@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: HotelManagementSystem
+
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@Danayya:1527:orcl
+    username: danayya
+    password: kkpx35
