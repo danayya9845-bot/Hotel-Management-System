@@ -21,52 +21,40 @@ Revenue – Track total revenue, salary payouts, profit/loss
 Profiles – Oracle DB (production-ready)
 
 3. Database Schema & Sample Data
-   
 CREATE TABLE ROOM (
     ROOM_ID NUMBER(10) PRIMARY KEY,
     TYPE VARCHAR2(50),
     PRICE NUMBER(10,2),
     AVAILABLE VARCHAR2(5)
 );
-
-
 -- Sample data
 INSERT INTO ROOM (ROOM_ID, TYPE, PRICE, AVAILABLE) VALUES (101, 'Single', 1000, 'Yes');
 INSERT INTO ROOM (ROOM_ID, TYPE, PRICE, AVAILABLE) VALUES (102, 'Double', 1800, 'Yes');
 INSERT INTO ROOM (ROOM_ID, TYPE, PRICE, AVAILABLE) VALUES (103, 'Suite', 3500, 'No');
 INSERT INTO ROOM (ROOM_ID, TYPE, PRICE, AVAILABLE) VALUES (104, 'Deluxe', 2500, 'Yes');
-
-=================================================================================================
-
+=========================================================================================
 CREATE TABLE CUSTOMER (
     CUSTOMER_ID NUMBER(5) PRIMARY KEY,
     NAME VARCHAR2(100),
     EMAIL VARCHAR2(100),
     PHONE VARCHAR2(20)
 );
-
 -- Sample data
 INSERT INTO CUSTOMER (CUSTOMER_ID, NAME, EMAIL, PHONE) VALUES (1, 'John Doe', 'john@example.com', '9876543210');
 INSERT INTO CUSTOMER (CUSTOMER_ID, NAME, EMAIL, PHONE) VALUES (2, 'Jane Smith', 'jane@example.com', '9876501234');
 INSERT INTO CUSTOMER (CUSTOMER_ID, NAME, EMAIL, PHONE) VALUES (3, 'Robert Brown', 'robert@example.com', '9876512345');
-
-=================================================================================================
-
-
+=========================================================================================
 CREATE TABLE EMPLOYEE (
     EMPLOYEE_ID NUMBER(5) PRIMARY KEY,
     NAME VARCHAR2(100),
     DEPARTMENT VARCHAR2(50),
     BASIC_SALARY NUMBER(10,2)
 );
-
-
 -- Sample data
 INSERT INTO EMPLOYEE (EMPLOYEE_ID, NAME, DEPARTMENT, BASIC_SALARY) VALUES (1, 'Alice Johnson', 'Reception', 30000);
 INSERT INTO EMPLOYEE (EMPLOYEE_ID, NAME, DEPARTMENT, BASIC_SALARY) VALUES (2, 'Bob Williams', 'Housekeeping', 25000);
 INSERT INTO EMPLOYEE (EMPLOYEE_ID, NAME, DEPARTMENT, BASIC_SALARY) VALUES (3, 'Charlie Davis', 'Manager', 50000);
-
-=================================================================================================
+=========================================================================================
 CREATE TABLE BOOKING (
     BOOKING_ID NUMBER(10) PRIMARY KEY,
     ROOM_ID NUMBER(10),
@@ -81,11 +69,9 @@ CREATE TABLE BOOKING (
 -- Sample data
 INSERT INTO BOOKING (BOOKING_ID, ROOM_ID, CUSTOMER_ID, START_DATE, END_DATE, TOTAL_AMOUNT, STATUS)
 VALUES (1001, 101, 1, TO_DATE('2025-10-01','YYYY-MM-DD'), TO_DATE('2025-10-05','YYYY-MM-DD'), 4000, 'BOOKED');
-
 INSERT INTO BOOKING (BOOKING_ID, ROOM_ID, CUSTOMER_ID, START_DATE, END_DATE, TOTAL_AMOUNT, STATUS)
 VALUES (1002, 102, 2, TO_DATE('2025-10-02','YYYY-MM-DD'), TO_DATE('2025-10-04','YYYY-MM-DD'), 3600, 'BOOKED');
-=================================================================================================
-CREATE TABLE SALARY (
+=========================================================================================
     SALARY_ID NUMBER(10) PRIMARY KEY,
     EMPLOYEE_ID NUMBER(5),
     HRA NUMBER(10,2),
@@ -98,10 +84,9 @@ CREATE TABLE SALARY (
 -- Sample data
 INSERT INTO SALARY (SALARY_ID, EMPLOYEE_ID, HRA, DA, TAX, NET_SALARY, PAY_DATE)
 VALUES (2001, 1, 5000, 2000, 3000, 27000, SYSDATE);
-
 INSERT INTO SALARY (SALARY_ID, EMPLOYEE_ID, HRA, DA, TAX, NET_SALARY, PAY_DATE)
 VALUES (2002, 2, 4000, 1500, 2000, 24500, SYSDATE);
-=================================================================================================
+=========================================================================================
 CREATE TABLE BILL (
     BILL_ID NUMBER(10) PRIMARY KEY,
     BOOKING_ID NUMBER(10),
@@ -123,6 +108,7 @@ INSERT INTO BILL (BILL_ID, BOOKING_ID, CUSTOMER_ID, ROOM_CHARGES, TAXES, DISCOUN
 VALUES (5002, 1002, 2, 3600, 360, 100, 3860, SYSDATE);
 
 4. Project Folder Structure
+   
  HotelManagementSystem/
  ├── src/main/java/com/hotel/
  │   ├── entity/
@@ -135,13 +121,14 @@ VALUES (5002, 1002, 2, 3600, 360, 100, 3860, SYSDATE);
  │   └── data.sql
  └── pom.xml
 
-5. Repository Layer 
+6. Repository Layer
+
 Room Repository – CRUD + availability 
 Customer Repository – CRUD Booking Repository – Create/Cancel bookings, fetch history * * Billing Repository – Generate bills, fetch customer bills, hotel revenue
 Employee Repository – CRUD employees 
 Salary Repository – Calculate payroll, fetch salary history
 
-6. Service Layer 
+8. Service Layer 
 
 Room Service – Check availability, update room status 
 Customer Service – Validate customer, fetch booking history 
